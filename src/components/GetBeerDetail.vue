@@ -1,27 +1,44 @@
 <script setup>
-import { reactive } from 'vue'
+import axios from 'axios'
+import { onMounted, reactive, ref } from 'vue'
 import { useRoute } from 'vue-router'
+import Card from './Card.vue'
 
-const route = useRoute()
-
-console.log(route.params.id)
-
+const props = defineProps({
+  id: {
+    type: String,
+    required: true
+  }
+})
 const state = reactive({
-  beerdetails: []
+  beersList: []
 })
 
-async function fetchBeerdetail() {
-  const response = await fetch(`https://api.punkapi.com/v2/beers/${route.params.id}`).then(
-    (response) => response.json()
-  )
-  return response
+const FetchBeerDetail = async () => {
+  try {
+    const response = await axios.get(`https://api.punkapi.com/v2/beers/${props.id}`)
+    state.beersList = response.data
+    console.log(state.beersList[0])
+  } catch (error) {
+    console.log(error.message)
+  }
 }
-state.beerdetails = await fetchBeerdetail()
-console.log(state.beerdetails)
+FetchBeerDetail()
 </script>
 
 <template>
-  <h1>{{ state.beerdetails.name }}</h1>
+  <div class="component-data" v-if="state.beersList[0]">
+    <Card :beerDetails="state.beersList[0]" />
+  </div>
 </template>
 
-<style></style>
+<style>
+.component-data {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+</style>

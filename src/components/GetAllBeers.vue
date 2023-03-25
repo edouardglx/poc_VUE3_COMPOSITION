@@ -1,5 +1,5 @@
 <script setup>
-import { reactive } from 'vue'
+import { reactive, ref, onMounted } from 'vue'
 import Card from './Card.vue'
 import axios from 'axios'
 
@@ -11,16 +11,20 @@ const fetchBeer = async () => {
   try {
     const response = await axios.get('https://api.punkapi.com/v2/beers?page=1&per_page=50')
     state.beersList = response.data
+    // console.log(state.beersList)
   } catch (error) {
     console.log(error.message)
   }
 }
+
 fetchBeer()
 </script>
 
 <template>
   <div class="component-data">
-    <Card v-for="(beers, index) in state.beersList" :key="index" :beerList="beers" />
+    <template v-for="(beer, index) in state.beersList" :key="index">
+      <Card :beerDetails="beer" />
+    </template>
   </div>
 </template>
 
@@ -32,6 +36,5 @@ fetchBeer()
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  border: 3px solid black;
 }
 </style>
