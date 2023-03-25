@@ -1,16 +1,12 @@
-<script setup>
-import BeerPage from './views/BeerPage.vue'
-</script>
+<script setup></script>
 
 <template>
-  <BeerPage />
-  <!-- <RouterView></RouterView>  -->
+  <router-view></router-view>
 </template>
 
 <style>
 html,
 body,
-div,
 span,
 applet,
 object,

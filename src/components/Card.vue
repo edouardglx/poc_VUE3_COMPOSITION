@@ -1,6 +1,6 @@
 <script setup>
 const props = defineProps({
-  beerList: {
+  beerDetails: {
     type: Object,
     required: true
   }
@@ -8,30 +8,32 @@ const props = defineProps({
 </script>
 
 <template>
-  <!-- <router-link :to="`/beer/${beerList.id}`"> -->
   <div class="card">
-    <img :src="beerList.image_url" alt="" />
+    <img :src="beerDetails.image_url" alt="illustration" />
     <div class="card--infos">
       <div class="card--title">
-        <h1>{{ beerList.name.toUpperCase() }}</h1>
+        <h1>
+          <router-link :to="{ name: 'beerDetails', params: { id: beerDetails.id } }"
+            >{{ beerDetails.name.toUpperCase() }}
+          </router-link>
+        </h1>
       </div>
       <div class="card--details">
-        <p>Date : {{ beerList.first_brewed }}</p>
+        <p>Date : {{ beerDetails.first_brewed }}</p>
         <br />
         <p>
           Tips :
-          {{ beerList.brewers_tips }}
+          {{ beerDetails.brewers_tips }}
         </p>
         <br />
         <p>Taste</p>
         <br />
-        <p v-for="(item, index) in beerList.food_pairing" :key="index">
+        <p v-for="(item, index) in beerDetails.food_pairing" :key="index">
           {{ item }}
         </p>
       </div>
     </div>
   </div>
-  <!-- </router-link> -->
 </template>
 
 <style>

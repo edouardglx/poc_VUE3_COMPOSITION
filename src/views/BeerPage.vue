@@ -1,14 +1,16 @@
 <script setup>
-import GetData from '../components/GetData.vue'
+import GetAllBeers from '../components/GetAllBeers.vue'
+import { ref } from 'vue'
+const title = ref('Beers List')
 </script>
 
 <template>
   <div class="home-component">
     <div class="component-title-home">
-      <span>Beers Lovers</span>
+      <span>{{ title }}</span>
     </div>
     <Suspense>
-      <GetData />
+      <GetAllBeers />
       <template v-slot:fallback>Data is Loading...</template>
     </Suspense>
   </div>
