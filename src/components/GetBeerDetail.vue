@@ -1,6 +1,6 @@
 <script setup>
 import axios from 'axios'
-import { onMounted, reactive, ref } from 'vue'
+import { reactive, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import Card from './Card.vue'
 

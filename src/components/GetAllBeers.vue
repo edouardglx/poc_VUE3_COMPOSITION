@@ -1,3 +1,4 @@
+s
 <script setup>
 import { reactive, ref, onMounted } from 'vue'
 import Card from './Card.vue'
@@ -11,7 +12,6 @@ const fetchBeer = async () => {
   try {
     const response = await axios.get('https://api.punkapi.com/v2/beers?page=1&per_page=50')
     state.beersList = response.data
-    // console.log(state.beersList)
   } catch (error) {
     console.log(error.message)
   }

@@ -1,11 +1,18 @@
 <script setup>
 import GetAllBeers from '../components/GetAllBeers.vue'
+import SearchBarVue from '../components/SearchBeers.vue'
 import { ref } from 'vue'
 const title = ref('Beers List')
+const findaSpecificBeer = ref('')
+console.log(findaSpecificBeer.value)
+const findBeer = (value) => {
+  findaSpecificBeer.value = value
+}
 </script>
 
 <template>
   <div class="home-component">
+    <SearchBarVue @find_beer="findBeer($event)" />
     <div class="component-title-home">
       <span>{{ title }}</span>
     </div>
