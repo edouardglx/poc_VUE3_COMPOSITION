@@ -1,5 +1,6 @@
 <script setup>
 import GetAllBeers from '../components/GetAllBeers.vue'
+import SearchBarVue from '../components/SearchBeers.vue'
 import { ref } from 'vue'
 const title = ref('Beers List')
 </script>

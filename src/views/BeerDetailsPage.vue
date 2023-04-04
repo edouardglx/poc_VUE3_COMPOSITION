@@ -3,7 +3,6 @@ import { ref } from 'vue'
 import GetBeerDetail from '../components/GetBeerDetail.vue'
 
 const title = ref('Beers Details')
-
 const props = defineProps({
   id: {
     type: String,
