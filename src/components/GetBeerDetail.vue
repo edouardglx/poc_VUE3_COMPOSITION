@@ -18,7 +18,6 @@ const FetchBeerDetail = async () => {
   try {
     const response = await axios.get(`https://api.punkapi.com/v2/beers/${props.id}`)
     state.beersList = response.data
-    console.log(state.beersList[0])
   } catch (error) {
     console.log(error.message)
   }

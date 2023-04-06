@@ -2,31 +2,17 @@
 import axios from 'axios'
 import { ref } from 'vue'
 
-//   if (searchBeer) {
-//     try {
-//       const response = await axios.get(
-//         `https://api.punkapi.com/v2/beers/?beer_name=` + `${searchBeer}`
-//       )
-//       data.value = response.data
-//       console.log(data.value)
-//       emit('find_beer', data.value)
-// const data = ref([])
-//     } catch (error) {
-//       console.log(error.message)
-//     }
-//   }
-
-const emit = defineEmits(['send_research'])
+const emit = defineEmits(['send_research', 'clear_research'])
 const searchBeer = ref('')
-console.log(searchBeer.value)
 </script>
 
 <template>
   <div class="container--input">
     <input type="text" name="" id="" placeholder="Find a beer..." v-model="searchBeer" />
     <button @click="$emit('send_research', searchBeer)">Search</button>
-    <p>{{ searchBeer }}</p>
-    <button>Clear</button>
+    <button v-if="searchBeer.length > 0" @click="$emit('clear_research', (searchBeer = ''))">
+      Clear
+    </button>
   </div>
 </template>
 

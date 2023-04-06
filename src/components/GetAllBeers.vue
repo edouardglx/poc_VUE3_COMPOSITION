@@ -1,4 +1,3 @@
-s
 <script setup>
 import { reactive, ref } from 'vue'
 import Card from './Card.vue'
@@ -9,8 +8,17 @@ const state = reactive({
   beersList: []
 })
 
-function FindASpecificBeer(e) {
-  console.log(e, 'catch emit')
+const findASpecificBeer = async (beerResearch) => {
+  if (beerResearch) {
+    try {
+      const response = await axios.get(
+        `https://api.punkapi.com/v2/beers/?beer_name=` + `${beerResearch}`
+      )
+      state.beersList = response.data
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
 }
 
 const fetchBeer = async () => {
@@ -26,7 +34,7 @@ fetchBeer()
 
 <template>
   <div class="component-data">
-    <SearchBar @send_research="FindASpecificBeer" />
+    <SearchBar @send_research="findASpecificBeer" @clear_research="fetchBeer" />
     <template v-for="(beer, index) in state.beersList" :key="index">
       <Card :beerDetails="beer" />
     </template>
