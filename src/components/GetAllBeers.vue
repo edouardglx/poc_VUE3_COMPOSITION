@@ -9,8 +9,15 @@ const state = reactive({
   beersList: []
 })
 
-function FindASpecificBeer(e) {
-  console.log(e, 'catch emit')
+const FindASpecificBeer = async (e) => {
+  if (e) {
+    try {
+      const response = await axios.get(`https://api.punkapi.com/v2/beers/?beer_name=` + `${e}`)
+      state.beersList = response.data
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
 }
 
 const fetchBeer = async () => {
@@ -26,7 +33,7 @@ fetchBeer()
 
 <template>
   <div class="component-data">
-    <SearchBar @send_research="FindASpecificBeer" />
+    <SearchBar @send_research="FindASpecificBeer" @clear_research="fetchBeer" />
     <template v-for="(beer, index) in state.beersList" :key="index">
       <Card :beerDetails="beer" />
     </template>
