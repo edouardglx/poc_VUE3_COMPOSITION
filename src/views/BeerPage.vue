@@ -1,6 +1,8 @@
 <script setup>
 import GetAllBeers from '../components/GetAllBeers.vue'
 import SearchBarVue from '../components/SearchBeers.vue'
+import Header from '../components/Header.vue'
+
 import { ref } from 'vue'
 const title = ref('Beers List')
 </script>
@@ -23,8 +25,6 @@ const title = ref('Beers List')
   height: auto;
   box-sizing: border-box;
   min-height: 100vh;
-  background: rgb(63, 94, 251);
-  background: radial-gradient(circle, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
 }
 
 .component-title-home {

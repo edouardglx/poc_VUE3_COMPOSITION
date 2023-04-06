@@ -1,25 +1,27 @@
-<script setup>
-import { reactive } from 'vue'
-
-const state = reactive({
-  login: false
-})
-const toto = 'hello world'
-
-const Fetchdata = async () => {
-  const response = await fetch('')
-    .then((res) => res.json())
-    .then((err) => err.message)
-  return response
-}
-</script>
+<script setup></script>
 
 <template>
   <div class="header--component">
-    <a href="#">Home</a>
-    <a href="#">Login</a>
-    <a href="#">Favoris</a>
+    <a href="#">Home 🏠</a>
+    <a href="#">Login 🚪</a>
+    <a href="#">Favoris ⭐️</a>
   </div>
 </template>
 
-<style></style>
+<style>
+.header--component {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background: rgb(252, 70, 107, 1);
+  background: radial-gradient(circle, rgb(252, 70, 107, 1) 0%, rgba(252, 70, 107, 1) 100%);
+}
+.header--component a {
+  text-decoration: none;
+  margin-left: 30px;
+  font-size: 22px;
+  color: black;
+}
+</style>
