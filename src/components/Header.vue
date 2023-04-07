@@ -1,24 +1,26 @@
 <script setup></script>
 
 <template>
-  <div class="header--component">
-    <a href="#">Home 🏠</a>
-    <a href="#">Login 🚪</a>
-    <a href="#">Favoris ⭐️</a>
-  </div>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#">Home 🏠</a></li>
+        <li><a href="#">Login 🚪</a></li>
+        <li><a href="#">Favoris ⭐️</a></li>
+      </ul>
+    </nav>
+  </header>
 </template>
 
 <style>
-.header--component {
+ul {
   width: 100%;
-  height: 70px;
+  height: 50px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  background: rgb(252, 70, 107, 1);
-  background: radial-gradient(circle, rgb(252, 70, 107, 1) 0%, rgba(252, 70, 107, 1) 100%);
 }
-.header--component a {
+li a {
   text-decoration: none;
   margin-left: 30px;
   font-size: 22px;
