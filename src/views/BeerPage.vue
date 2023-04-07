@@ -1,42 +1,21 @@
 <script setup>
 import GetAllBeers from '../components/GetAllBeers.vue'
-import SearchBarVue from '../components/SearchBeers.vue'
-import Header from '../components/Header.vue'
-
-import { ref } from 'vue'
-const title = ref('Beers List')
 </script>
 
 <template>
-  <div class="home-component">
-    <div class="component-title-home">
-      <span>{{ title }}</span>
-    </div>
+  <section class="home-component">
     <Suspense>
       <GetAllBeers />
       <template v-slot:fallback>Data is Loading...</template>
     </Suspense>
-  </div>
+  </section>
 </template>
 
 <style>
 .home-component {
-  width: 100vw;
-  height: auto;
-  box-sizing: border-box;
-  min-height: 100vh;
-}
-
-.component-title-home {
-  height: 80px;
-  display: flex;
-  justify-content: center;
-  text-align: center;
   width: 100%;
-  font-size: 40px;
-}
-
-.component-title-home span {
-  margin: 20px;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 20px;
 }
 </style>

@@ -1,7 +1,6 @@
 <script setup>
 import axios from 'axios'
 import { reactive, ref } from 'vue'
-import { useRoute } from 'vue-router'
 import Card from './Card.vue'
 
 const props = defineProps({
@@ -26,13 +25,13 @@ FetchBeerDetail()
 </script>
 
 <template>
-  <div class="component-data" v-if="state.beersList[0]">
+  <section v-if="state.beersList[0]">
     <Card :beerDetails="state.beersList[0]" />
-  </div>
+  </section>
 </template>
 
 <style>
-.component-data {
+.section {
   width: 100%;
   display: flex;
   flex-direction: column;
