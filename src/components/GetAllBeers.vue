@@ -1,28 +1,38 @@
 <script setup>
-import { reactive } from 'vue'
+import { computed, reactive } from 'vue'
 import Card from './Card.vue'
-import axios from 'axios'
 import SearchBar from '../components/SearchBeers.vue'
-
+import { listOfAllBeer, findASpecificBeer } from '../service/api'
 const state = reactive({
   beersList: []
 })
 
-//LIST_OF_ALL_BEERS
-const listOfAllBeer = async () => {
+const getAllBeers = async () => {
   try {
-    const response = await axios.get('https://api.punkapi.com/v2/beers?page=1&per_page=50')
-    state.beersList = response.data
+    const response = await listOfAllBeer()
+    state.beersList = response
   } catch (error) {
     console.log(error.message)
   }
 }
-listOfAllBeer()
+getAllBeers()
+
+const findBeers = computed(() => {
+  const find = async (e) => {
+    let beerResearch = e
+    try {
+      return (state.beersList = await findASpecificBeer(beerResearch))
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+  return find
+})
 </script>
 
 <template>
   <section class="component-data">
-    <SearchBar @send_research="findASpecificBeer" @clear_research="fetchBeer" />
+    <SearchBar @send_research="findBeers" @clear_research="fetchBeer" />
     <ul>
       <li v-for="(beer, index) in state.beersList" :key="index"><Card :beerDetails="beer" /></li>
     </ul>

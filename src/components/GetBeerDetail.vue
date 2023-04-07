@@ -1,7 +1,7 @@
 <script setup>
-import axios from 'axios'
-import { reactive, ref } from 'vue'
+import { reactive } from 'vue'
 import Card from './Card.vue'
+import { fetchBeerDetail } from '../service/api'
 
 const props = defineProps({
   id: {
@@ -13,15 +13,15 @@ const state = reactive({
   beersList: []
 })
 
-const FetchBeerDetail = async () => {
+const fetchdetail = async () => {
   try {
-    const response = await axios.get(`https://api.punkapi.com/v2/beers/${props.id}`)
-    state.beersList = response.data
+    const response = await fetchBeerDetail(props.id)
+    state.beersList = response
   } catch (error) {
     console.log(error.message)
   }
 }
-FetchBeerDetail()
+fetchdetail()
 </script>
 
 <template>
