@@ -1,16 +1,22 @@
 <script setup>
+import noImage from '../asset/no-mage.png'
+
 const props = defineProps({
   beerDetails: {
     type: Object,
     required: true
   }
 })
+
+const errorImageHandling = (event) => {
+  event.target.src = noImage
+}
 </script>
 
 <template>
   <article class="article">
     <div class="card--image">
-      <img :src="beerDetails.image_url" :alt="beerDetails.name" />
+      <img :src="beerDetails.image_url" :alt="beerDetails.name" @error="errorImageHandling" />
     </div>
     <section class="card--details">
       <h1>
